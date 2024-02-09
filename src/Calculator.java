@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+
 public class Calculator implements ActionListener {
 
 
@@ -24,14 +25,13 @@ public class Calculator implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 550);
         frame.setLayout(null);
-        frame.setBackground(new Color(245, 113, 40, 255));
 
         //OUTPUT WINDOW
         textField = new JTextField();
         textField.setBounds(40,25,300,50); //size of output window
         textField.setFont(myFont);
+        textField.setBackground(new Color(187, 187, 187));
         textField.setEditable(false); //disable user input into output window
-        textField.setBackground(Color.WHITE);
 
         //FUNCTIONAL BUTTONS
         addButton = new JButton("+");
@@ -57,8 +57,9 @@ public class Calculator implements ActionListener {
 
         for (int i = 0; i < 9; i++) {
             functionButtons[i].addActionListener(this);
+            functionButtons[i].setForeground(Color.WHITE);
             functionButtons[i].setFont(myFont);
-            functionButtons[i].setBackground(new Color(255, 255, 255, 255));
+            functionButtons[i].setBackground(new Color(91, 91, 91, 255));
             functionButtons[i].setFocusable(false);//Disables outline on button
         }
 
@@ -66,7 +67,9 @@ public class Calculator implements ActionListener {
         for (int i = 0; i < 10; i++) {
          numberButtons[i] = new JButton(String.valueOf(i));
          numberButtons[i].addActionListener(this);
+         numberButtons[i].setForeground(Color.WHITE);
          numberButtons[i].setFont(myFont);
+         numberButtons[i].setBackground(new Color(52, 52, 52));
          numberButtons[i].setFocusable(false);//Disables outline on button
         }
 
@@ -105,12 +108,18 @@ public class Calculator implements ActionListener {
         frame.add(negButton);
         frame.add(textField);
         frame.setVisible(true);
+
     }
 
     public static void main(String[] args) {
 
         Calculator calc = new Calculator();
 
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
     //Override ActionListener
